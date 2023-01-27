@@ -11,7 +11,7 @@ def home(request):
         form = UrlForm(request.POST)
         if form.is_valid():
             link = form.cleaned_data['link']
-            if ("http;//" not in link) and ("https://" not in link):
+            if ("http://" not in link) and ("https://" not in link):
                 link = "http://" + link
             alias = form.cleaned_data['alias']
             new_url = Url(link=link, alias=alias)
