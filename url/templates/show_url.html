@@ -1,2 +1,26 @@
-
-<a href="http://{{request.get_host}}/{{alias}}">{{request.get_host}}/{{alias}}</a>
+{% extends "index.html" %}
+{% block show_url %}
+     
+<div id="shortened-links">
+     <div>
+          <div class="item">
+               <div class="long-url">
+                    <div class="title font-1">Long URL</div> <button id="long-url" class="font-2">
+                         {{link}}
+                    </button>
+               </div>
+               <div class="short-url">
+                    <div class="title font-1">Short URL</div> <button id="short-url" class="font-2 hint--bottom"
+                         aria-label="Click link to Copy" onclick="copyLink(this)"
+                         value="https://short.sumitdhiman.in/{{alias}}">https://short.sumitdhiman.in/{{alias}}</button>
+               </div>
+          </div>
+     </div>
+</div>
+<script>
+     function copyLink(tag){
+    let text = tag.value;
+    navigator.clipboard.writeText(text);
+}
+</script>
+{% endblock show_url %}
