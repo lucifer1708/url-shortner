@@ -209,7 +209,7 @@
 
      <!-- URL input box -->
      <div class="input-wrapper">
-          <form method="POST" action="">
+          <form method="POST">
                {% csrf_token %}
                {% render_field form.link class+="font-2" placeholder="Paste link here" %}<br />
                {% render_field form.alias class+="font-2" placeholder="Alias" %}<br />
