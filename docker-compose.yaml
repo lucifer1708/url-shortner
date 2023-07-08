@@ -4,5 +4,5 @@ services:
   django:
     build: .
     ports:
-      - "8080:8080"
-    command: python -m gunicorn --bind 0.0.0.0:8080 shortner.wsgi 
+      - "8000:8000"
+    command:  gunicorn shortner.wsgi 
