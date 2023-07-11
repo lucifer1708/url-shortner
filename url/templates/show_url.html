@@ -1,6 +1,6 @@
 {% extends "index.html" %}
 {% block show_url %}
-     
+
 <div id="shortened-links">
      <div>
           <div class="item">
@@ -10,17 +10,20 @@
                     </button>
                </div>
                <div class="short-url">
-                    <div class="title font-1">Short URL</div> <button id="short-url" class="font-2 hint--bottom"
-                         aria-label="Click link to Copy" onclick="copyLink(this)"
-                         value="https://short.sumitdhiman.in/{{alias}}">https://short.sumitdhiman.in/{{alias}}</button>
+                    <div class="title font-1">Short URL</div>
+                    <p id="myText" class="font-2 hint--bottom" ononclick="copy(this)">https://short.sumitdhiman.in/{{alias}}</p>
                </div>
           </div>
      </div>
 </div>
 <script>
-     function copyLink(tag){
-    let text = tag.value;
-    navigator.clipboard.writeText(text);
+ function copy(that){
+var inp =document.createElement('input');
+document.body.appendChild(inp)
+inp.value =that.textContent
+inp.select();
+document.execCommand('copy',false);
+inp.remove();
 }
 </script>
 {% endblock show_url %}
