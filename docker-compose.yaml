@@ -3,13 +3,10 @@ version: "3.9"
 services:
   django:
     volumes:
-      - static:/static
-      - db:/db.sqlite3
+      - /static
+      - /db.sqlite3
     build: .
     ports:
       - "8080:8080"
     command:  gunicorn --bind 0.0.0.0:8080 shortner.wsgi 
 
-volumes:
-  static:
-  db:
