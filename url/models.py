@@ -6,3 +6,6 @@ from django.db import models
 class Url(models.Model):
     link = models.CharField(max_length=10000000)
     alias = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return "urls.istenith.com/{}".format(self.alias)

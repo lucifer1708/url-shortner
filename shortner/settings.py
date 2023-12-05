@@ -24,9 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-0(isy4%6=*gyje!2xg8svf!hb*10rc+hurvuifg0*b7$@s$r8u"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
+    "localhost",
     "http://short.sumitdhiman.in",
     "sumitdhiman.in",
     "https://short.sumitdhiman.in",
@@ -36,6 +37,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "widget_tweaks",
     "django.contrib.auth",
@@ -135,28 +137,89 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
 JAZZMIN_UI_TWEAKS = {
     # Add your themes here
-    "theme": "flatly",
+    "theme": "darkly",
     "navbar": "navbar-dark",
     "dark_mode_theme": "darkly",
 }
-JAZZMIN_SETTINGS = {
-    # title of the window (Will default to current_admin_site.site_title)
-    "site_title": "Change this Title",
-    # Title on the login screen (19 chars max) (will default to current_admin_site.site_header)
-    "site_header": "your site header",
-    # Title on the brand (19 chars max) (will default to current_admin_site.site_header)
-    "site_brand": "Your BRAND",
-    "welcome_sign": "Welcome to the admin panel of the respective website",
-    # Copyright on the footer
-    "copyright": "YOUR COPYRIGHT",
-    "changeform_format": "horizontal_tabs",
-    # Add your Logo here
-    # "site_logo": "images/",
-    "site_logo_classes": "img-circle",
-    "topmenu_links": [
-        {"name": "Home", "url": "/", "new_window": True},
-    ],
-}
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
-CSRF_TRUSTED_ORIGINS = ["http://short.sumitdhiman.in", "https://short.sumitdhiman.in"]
+CSRF_TRUSTED_ORIGINS = ["http://urls.istenith.com", "https://urls.istenith.com"]
+
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "ISTE Admin",
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "ISTE",
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "ISTE",
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "/iste-logo.png",
+    # Logo to use for your site, must be present in static files, used for login form logo (defaults to site_logo)
+    "login_logo": "/iste-logo.png",
+    # Logo to use for login form in dark themes (defaults to login_logo)
+    "login_logo_dark": "/iste-logo.png",
+    # CSS classes that are applied to the logo above
+    "site_logo_classes": "img-circle",
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": None,
+    # Welcome text on the login screen
+    "welcome_sign": "Welcome to the ISTE",
+    # Copyright on the footer
+    "copyright": "ISTE NITH",
+    # List of model admins to search from the search bar, search bar omitted if excluded
+    # If you want to use a single search field you dont need to use a list, you can use a simple string
+    "search_model": ["auth.User", "auth.Group"],
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": None,
+    #############
+    # Side Menu #
+    #############
+    # Whether to display the side menu
+    "show_sidebar": True,
+    # Whether to aut expand the menu
+    "navigation_expanded": True,
+    # Hide these apps when generating side menu e.g (auth)
+    "hide_apps": [],
+    # Hide these models when generating side menu (e.g auth.user)
+    "hide_models": [],
+    # Custom links to append to app groups, keyed on app name
+    # for the full list of 5.13.0 free icon classes
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+    },
+    # Icons that are used when one is not manually specified
+    "default_icon_parents": "fas fa-chevron-circle-right",
+    "default_icon_children": "fas fa-circle",
+    #################
+    # Related Modal #
+    #################
+    # Use modals instead of popups
+    "related_modal_active": False,
+    #############
+    # UI Tweaks #
+    #############
+    # Relative paths to custom CSS/JS scripts (must be present in static files)
+    "custom_css": None,
+    "custom_js": None,
+    # Whether to link font from fonts.googleapis.com (use custom_css to supply font otherwise)
+    "use_google_fonts_cdn": True,
+    # Whether to show the UI customizer on the sidebar
+    "show_ui_builder": False,
+    ###############
+    # Change view #
+    ###############
+    # Render out the change view as a single form, or in tabs, current options are
+    # - single
+    # - horizontal_tabs (default)
+    # - vertical_tabs
+    # - collapsible
+    # - carousel
+    "changeform_format": "horizontal_tabs",
+    # override change forms on a per modeladmin basis
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
+}
